@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<document xmlns='http://www.lotus.com/dxl' version='9.0' maintenanceversion='1.0'
+ replicaid='862564870080072B' form='fmDAAuthoritative'>
+	<noteinfo noteid='2e9fa' unid='B1D133B74B2738056525747C00103DE9' sequence='57'>
+		<created>
+			<datetime>20080704T082724,25+0530</datetime>
+		</created>
+		<modified>
+			<datetime dst='true'>20150606T080009,62-05</datetime>
+		</modified>
+		<revised>
+			<datetime dst='true'>20150603T143333,37-05</datetime>
+		</revised>
+		<lastaccessed>
+			<datetime dst='true'>20150606T080009,61-05</datetime>
+		</lastaccessed>
+		<addedtofile>
+			<datetime>20091110T185705,50-06</datetime>
+		</addedtofile>
+	</noteinfo>
+</document>
