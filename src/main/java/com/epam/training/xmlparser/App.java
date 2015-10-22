@@ -7,6 +7,8 @@ import org.w3c.dom.Document;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.Writer;
 
 public class App {
 
@@ -23,7 +25,9 @@ public class App {
             JSONConverter jsonConverter = new JSONConverter();
             JSONObject jsonObject = jsonConverter.parseDocument(doc);
 
-
+            try (Writer writer = new FileWriter("src/out/converted.json")) {
+                writer.write(jsonObject.toString());
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

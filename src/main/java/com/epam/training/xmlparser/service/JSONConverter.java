@@ -6,7 +6,7 @@ import org.w3c.dom.Document;
 public class JSONConverter {
 
     public JSONObject parseDocument(Document doc) {
-        return null;
+        return new JSONObject();
     }
 
 }

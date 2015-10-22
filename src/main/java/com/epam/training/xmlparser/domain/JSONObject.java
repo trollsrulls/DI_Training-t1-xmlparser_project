@@ -19,4 +19,9 @@ public class JSONObject implements JSONComposite {
         entries.put(key, value);
     }
 
+    @Override
+    public String toString() {
+        return "{}";
+    }
+
 }
