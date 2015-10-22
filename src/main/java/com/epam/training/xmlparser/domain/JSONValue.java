@@ -18,4 +18,8 @@ public class JSONValue implements JSONComposite {
         this.value = value;
     }
 
+    @Override
+    public String toString() {
+        return value;
+    }
 }

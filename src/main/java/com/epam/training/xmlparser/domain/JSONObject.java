@@ -21,7 +21,24 @@ public class JSONObject implements JSONComposite {
 
     @Override
     public String toString() {
-        return "{}";
+        StringBuilder builder = new StringBuilder();
+        builder.append("{");
+
+        final String quot = "\"";
+        for (Map.Entry<String, JSONComposite> item : entries.entrySet()) {
+            builder.append(quot)
+                    .append(item.getKey())
+                    .append(quot)
+                    .append(": ")
+                    .append(item.getValue() instanceof JSONValue ? quot + item.getValue() + quot : item.getValue())
+                    .append(", ");
+        }
+        if (builder.length() > 2) {
+            builder.delete(builder.length() - 2, builder.length() - 1);
+        }
+
+        builder.append("}");
+        return builder.toString();
     }
 
 }

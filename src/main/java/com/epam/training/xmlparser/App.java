@@ -12,9 +12,13 @@ import java.io.Writer;
 
 public class App {
 
+    public static final String RESOURCES_DIR = "src/resources/";
+    public static final String OUT_DIR = "src/out/";
+
     public static void main(String[] args) {
+        final String fileName = "xml_entity";
         try {
-            File xmlFile = new File("src/resources/xml_entity.xml");
+            File xmlFile = new File(RESOURCES_DIR + fileName + ".xml");
 
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -25,7 +29,7 @@ public class App {
             JSONConverter jsonConverter = new JSONConverter();
             JSONObject jsonObject = jsonConverter.parseDocument(doc);
 
-            try (Writer writer = new FileWriter("src/out/converted.json")) {
+            try (Writer writer = new FileWriter(OUT_DIR + fileName + ".json")) {
                 writer.write(jsonObject.toString());
             }
         } catch (Exception e) {

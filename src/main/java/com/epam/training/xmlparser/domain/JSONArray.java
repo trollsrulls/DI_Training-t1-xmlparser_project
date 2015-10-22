@@ -18,4 +18,16 @@ public class JSONArray implements JSONComposite {
     public void put(JSONComposite item) {
         items.add(item);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("[");
+        for (JSONComposite item : items) {
+            builder.append(item);
+        }
+        builder.append("],");
+        return builder.toString();
+    }
+
 }
