@@ -24,9 +24,13 @@ public class JSONArray implements JSONComposite {
         StringBuilder builder = new StringBuilder();
         builder.append("[");
         for (JSONComposite item : items) {
-            builder.append(item);
+            builder.append(item)
+                    .append(", ");
         }
-        builder.append("],");
+        if (builder.length() > 2) {
+            builder.delete(builder.length() - 2, builder.length() - 1);
+        }
+        builder.append("]");
         return builder.toString();
     }
 
