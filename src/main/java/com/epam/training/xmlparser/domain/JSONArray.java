@@ -22,15 +22,16 @@ public class JSONArray implements JSONComposite {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("[");
+        builder.append(JSONConstants.ARRAY_PREFIX);
         for (JSONComposite item : items) {
             builder.append(item)
-                    .append(", ");
+                    .append(JSONConstants.ITEM_SEPARATOR);
         }
-        if (builder.length() > 2) {
-            builder.delete(builder.length() - 2, builder.length() - 1);
+        if (builder.length() > JSONConstants.ITEM_SEPARATOR.length()) {
+            builder.delete(builder.length() - JSONConstants.ITEM_SEPARATOR.length(),
+                    builder.length());
         }
-        builder.append("]");
+        builder.append(JSONConstants.ARRAY_SUFFIX);
         return builder.toString();
     }
 

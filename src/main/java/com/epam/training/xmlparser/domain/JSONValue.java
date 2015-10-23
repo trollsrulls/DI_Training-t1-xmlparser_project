@@ -22,6 +22,7 @@ public class JSONValue implements JSONComposite {
 
     @Override
     public String toString() {
-        return value;
+        return JSONConstants.QUOT + value + JSONConstants.QUOT;
     }
+
 }

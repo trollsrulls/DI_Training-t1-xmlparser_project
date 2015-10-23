@@ -22,22 +22,20 @@ public class JSONObject implements JSONComposite {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("{");
-
-        final String quot = "\"";
+        builder.append(JSONConstants.OBJECT_PREFIX);
         for (Map.Entry<String, JSONComposite> item : entries.entrySet()) {
-            builder.append(quot)
+            builder.append(JSONConstants.QUOT)
                     .append(item.getKey())
-                    .append(quot)
-                    .append(": ")
-                    .append(item.getValue() instanceof JSONValue ? quot + item.getValue() + quot : item.getValue())
-                    .append(", ");
+                    .append(JSONConstants.QUOT)
+                    .append(JSONConstants.KEY_VALUE_SEPARATOR)
+                    .append(item.getValue())
+                    .append(JSONConstants.ITEM_SEPARATOR);
         }
-        if (builder.length() > 2) {
-            builder.delete(builder.length() - 2, builder.length() - 1);
+        if (builder.length() > JSONConstants.ITEM_SEPARATOR.length()) {
+            builder.delete(builder.length() - JSONConstants.ITEM_SEPARATOR.length(),
+                    builder.length());
         }
-
-        builder.append("}");
+        builder.append(JSONConstants.OBJECT_SUFFIX);
         return builder.toString();
     }
 

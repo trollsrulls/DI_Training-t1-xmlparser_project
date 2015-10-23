@@ -19,7 +19,6 @@ public class JSONConverter {
     }
 
     private void visitNode(Node node, JSONObject jsonObject) {
-
         if (node instanceof Element) {
             NamedNodeMap attrs = node.getAttributes();
             for (int i = 0; i < attrs.getLength(); i++) {
