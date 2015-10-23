@@ -3,6 +3,7 @@ package com.epam.training.xmlparser.service;
 import com.epam.training.xmlparser.domain.JSONArray;
 import com.epam.training.xmlparser.domain.JSONObject;
 import com.epam.training.xmlparser.domain.JSONValue;
+import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.*;
 
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ public class JSONConverter {
 
     public JSONObject parseDocument(Document doc) {
         JSONObject root = new JSONObject();
-        visitNode(doc.getDocumentElement(), root);
+        visitNode(doc, root);
         return root;
     }
 
@@ -38,18 +39,28 @@ public class JSONConverter {
         for (int i = 0; i < childNodes.size(); i++) {
             int start = i;
             for (int j = i + 1; j < childNodes.size(); j++) {
-                if (!childNodes.get(i).equals(childNodes.get(j))) {
-                    i = j - 1;
+                if (childNodes.get(i).getNodeName().equals(childNodes.get(j).getNodeName())) {
+                    i = j;
                 }
             }
             int end = i;
 
             if (end - start == 0) {
-                JSONObject childJsonObject = new JSONObject();
                 Node currentChild = childNodes.get(end);
+
+                if (JSONValue.TEXT_KEY.equals(currentChild.getNodeName())
+                        && StringUtils.isNotBlank(currentChild.getNodeValue())) {
+                    JSONValue value = new JSONValue(currentChild.getNodeValue());
+                    jsonObject.put(JSONValue.TEXT_KEY, value);
+                    continue;
+                }
+                JSONObject childJsonObject = new JSONObject();
                 jsonObject.put(currentChild.getNodeName(), childJsonObject);
                 visitNode(currentChild, childJsonObject);
             } else {
+                if (JSONValue.TEXT_KEY.equals(childNodes.get(start).getNodeName())) {
+                    continue;
+                }
                 JSONArray childJsonArray = new JSONArray();
                 jsonObject.put(childNodes.get(start).getNodeName(), childJsonArray);
                 for (int j = start; j <= end; j++) {

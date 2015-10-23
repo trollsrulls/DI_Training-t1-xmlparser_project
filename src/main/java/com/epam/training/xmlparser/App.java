@@ -10,7 +10,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.Writer;
 
-public class App {
+public final class App {
 
     public static final String RESOURCES_DIR = "src/resources/";
     public static final String OUT_DIR = "src/out/";
@@ -24,8 +24,6 @@ public class App {
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(xmlFile);
 
-            doc.getDocumentElement().normalize();
-
             JSONConverter jsonConverter = new JSONConverter();
             JSONObject jsonObject = jsonConverter.parseDocument(doc);
 
@@ -36,5 +34,7 @@ public class App {
             e.printStackTrace();
         }
     }
+
+    private App() { }
 
 }

@@ -2,6 +2,8 @@ package com.epam.training.xmlparser.domain;
 
 public class JSONValue implements JSONComposite {
 
+    public static final String TEXT_KEY = "#text";
+
     private String value;
 
     public JSONValue() { }
